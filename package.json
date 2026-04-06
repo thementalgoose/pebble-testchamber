@@ -1,0 +1,155 @@
+{
+  "name": "pebble-testchamber",
+  "author": "MakeAwesomeHappen",
+  "version": "1.0.0",
+  "keywords": ["pebble-app"],
+  "private": true,
+  "dependencies": {},
+  "pebble": {
+    "displayName": "pebble-testchamber",
+    "uuid": "a7c4b0d3-56b4-4449-8163-71f14b617af6",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "aplite",
+      "basalt",
+      "chalk",
+      "diorite",
+      "emery",
+      "flint",
+      "gabbro"
+    ],
+    "watchapp": {
+      "watchface": true
+    },
+    "messageKeys": [
+      "dummy"
+    ],
+    "resources": {
+      "media": [
+        {
+          "type": "font",
+          "name": "FONT_FUTURA_LIGHT_THIN_24",
+          "file": "fonts/futuralight.ttf",
+          "characterRegex": "[0-9]"
+        },
+        {
+          "type": "font",
+          "name": "FONT_FUTURA_LIGHT_THIN_64",
+          "file": "fonts/futuralight.ttf",
+          "characterRegex": "[0-9]"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_LARGE_0",
+          "file": "images/num-large/0.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_LARGE_1",
+          "file": "images/num-large/1.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_LARGE_2",
+          "file": "images/num-large/2.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_LARGE_3",
+          "file": "images/num-large/3.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_LARGE_4",
+          "file": "images/num-large/4.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_LARGE_5",
+          "file": "images/num-large/5.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_LARGE_6",
+          "file": "images/num-large/6.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_LARGE_7",
+          "file": "images/num-large/7.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_LARGE_8",
+          "file": "images/num-large/8.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_LARGE_9",
+          "file": "images/num-large/9.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_SMALL_0",
+          "file": "images/num-small/0.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_SMALL_1",
+          "file": "images/num-small/1.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_SMALL_2",
+          "file": "images/num-small/2.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_SMALL_3",
+          "file": "images/num-small/3.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_SMALL_4",
+          "file": "images/num-small/4.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_SMALL_5",
+          "file": "images/num-small/5.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_SMALL_6",
+          "file": "images/num-small/6.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_SMALL_7",
+          "file": "images/num-small/7.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_SMALL_8",
+          "file": "images/num-small/8.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_NUM_SMALL_9",
+          "file": "images/num-small/9.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_COMPANIONCUBE",
+          "file": "images/panel-companioncube.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_CUBEDROP",
+          "file": "images/panel-cubedrop.png"
+        }
+      ]
+    }
+  }
+}
