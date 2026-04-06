@@ -148,6 +148,46 @@
           "type": "bitmap",
           "name": "IMAGE_PANEL_CUBEDROP",
           "file": "images/panel-cubedrop.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_APERATURE_0",
+          "file": "images/panel-aperature-0.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_APERATURE_1",
+          "file": "images/panel-aperature-1.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_APERATURE_2",
+          "file": "images/panel-aperature-2.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_APERATURE_3",
+          "file": "images/panel-aperature-3.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_APERATURE_4",
+          "file": "images/panel-aperature-4.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_APERATURE_5",
+          "file": "images/panel-aperature-5.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_APERATURE_6",
+          "file": "images/panel-aperature-6.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_APERATURE_7",
+          "file": "images/panel-aperature-7.png"
         }
       ]
     }

@@ -34,6 +34,6 @@
 // ---------------------------------------------------------------------------
 // Layout — bottom panel row
 // ---------------------------------------------------------------------------
-#define PANEL_BOX_SZ      40
+#define PANEL_BOX_SZ      42
 #define PANEL_BOX_SPACING 2 
 #define PANEL_BOX_BOTTOM  4 
