@@ -20,21 +20,20 @@
 // ---------------------------------------------------------------------------
 #define DATE_Y            (HOURS_Y + HOURS_H + 4)
 
-// ---------------------------------------------------------------------------
-// Layout — companion cube panel
-// ---------------------------------------------------------------------------
-#define CUBE_SZ           PBL_IF_ROUND_ELSE(40, 50)
+
 
 // ---------------------------------------------------------------------------
 // Layout — battery bar
 // ---------------------------------------------------------------------------
-#define BATTERY_Y         (DIVIDER_BOT_Y + 4)
 #define BATTERY_H         8
+#define BATTERY_SPACING   2
+
 #define BAR_LINE_W        1
 #define BAR_LINE_GAP      2
 
 // ---------------------------------------------------------------------------
-// Layout — bottom panel row (3 equal boxes)
+// Layout — bottom panel row
 // ---------------------------------------------------------------------------
-#define PANEL_ROW_Y       (BATTERY_Y + BATTERY_H + 6)
-#define PANEL_BOX_SZ      36
+#define PANEL_BOX_SZ      40
+#define PANEL_BOX_SPACING 2 
+#define PANEL_BOX_BOTTOM  4 
