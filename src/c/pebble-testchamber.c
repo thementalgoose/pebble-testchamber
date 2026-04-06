@@ -1,18 +1,8 @@
 #include <pebble.h>
+#include "constants.h"
 #include "panels.h"
 #include "battery.h"
 #include "time.h"
-
-// Layout constants (rectangular display: 144x168)
-#define START_MARGIN      10
-#define DIVIDER_TOP_Y     (PBL_IF_ROUND_ELSE(44, 2) + START_MARGIN)
-#define HOURS_Y           (PBL_IF_ROUND_ELSE(50, 6) + START_MARGIN)
-#define HOURS_H           70
-#define DIVIDER_BOT_Y     (HOURS_Y + HOURS_H + 8)
-#define DATE_Y            (DIVIDER_BOT_Y + 6)
-#define CUBE_SZ           PBL_IF_ROUND_ELSE(40, 50)
-#define BATTERY_Y         (DATE_Y + 28)
-#define BATTERY_H         8
 
 static Window     *s_window;
 static Layer      *s_canvas_layer;
@@ -22,9 +12,15 @@ static GBitmap    *s_cube_bitmap;
 static void canvas_update_proc(Layer *layer, GContext *ctx) {
   GRect bounds = layer_get_bounds(layer);
   int16_t w = bounds.size.w;
+  int16_t h = bounds.size.h;
   graphics_context_set_stroke_color(ctx, GColorBlack);
   graphics_draw_line(ctx, GPoint(START_MARGIN, DIVIDER_TOP_Y), GPoint(w - 1, DIVIDER_TOP_Y));
   graphics_draw_line(ctx, GPoint(START_MARGIN, DIVIDER_BOT_Y), GPoint(w - 1, DIVIDER_BOT_Y));
+
+  // Bottom panel row: 3 equal boxes
+  graphics_draw_rect(ctx, GRect(w - (1 * (PANEL_BOX_SZ + 2)), h - (PANEL_BOX_SZ + 2), PANEL_BOX_SZ, PANEL_BOX_SZ));
+  graphics_draw_rect(ctx, GRect(w - (2 * (PANEL_BOX_SZ + 2)), h - (PANEL_BOX_SZ + 2), PANEL_BOX_SZ, PANEL_BOX_SZ));
+  graphics_draw_rect(ctx, GRect(w - (3 * (PANEL_BOX_SZ + 2)), h - (PANEL_BOX_SZ + 2), PANEL_BOX_SZ, PANEL_BOX_SZ));
 }
 
 static void window_load(Window *window) {
@@ -40,7 +36,7 @@ static void window_load(Window *window) {
   // Time layer — hours + minutes digit images
   Layer *time_layer = time_layer_create(GRect(START_MARGIN, HOURS_Y, w - START_MARGIN * 2, HOURS_H));
   layer_add_child(window_layer, time_layer);
-
+  
   // Date label
   TextLayer *date_layer = time_date_layer_create(GRect(START_MARGIN, DATE_Y, w - START_MARGIN * 2, 24));
   layer_add_child(window_layer, text_layer_get_layer(date_layer));

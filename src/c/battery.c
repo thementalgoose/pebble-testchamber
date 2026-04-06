@@ -1,7 +1,5 @@
 #include "battery.h"
-
-#define BAR_LINE_W   1
-#define BAR_LINE_GAP 2
+#include "constants.h"
 
 static Layer *s_battery_layer;
 static int    s_charge_percent = 100;

@@ -1,9 +1,6 @@
 #include "time.h"
 #include "panels.h"
-
-#define HOURS_H          70
-#define MINUTES_OFFSET_X (38 + 10 + 10)  // matches START_MARGIN offset
-#define MINUTES_OFFSET_Y 36
+#include "constants.h"
 
 static Layer     *s_time_layer;
 static TextLayer *s_date_layer;
@@ -52,7 +49,7 @@ TextLayer *time_date_layer_create(GRect frame) {
   s_date_layer = text_layer_create(frame);
   text_layer_set_background_color(s_date_layer, GColorClear);
   text_layer_set_text_color(s_date_layer, GColorBlack);
-  text_layer_set_font(s_date_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
+  text_layer_set_font(s_date_layer, fonts_get_system_font(FONT_KEY_GOTHIC_14_BOLD));
   text_layer_set_text_alignment(s_date_layer, GTextAlignmentLeft);
   return s_date_layer;
 }
@@ -62,4 +59,64 @@ void time_destroy(void) {
   layer_destroy(s_time_layer);
   text_layer_destroy(s_date_layer);
   panels_unload_digits();
+}
+
+
+// ---------------------------------------------------------------------------
+// Digit bitmaps
+// ---------------------------------------------------------------------------
+
+static const uint32_t s_num_large_ids[10] = {
+  RESOURCE_ID_IMAGE_NUM_LARGE_0, RESOURCE_ID_IMAGE_NUM_LARGE_1,
+  RESOURCE_ID_IMAGE_NUM_LARGE_2, RESOURCE_ID_IMAGE_NUM_LARGE_3,
+  RESOURCE_ID_IMAGE_NUM_LARGE_4, RESOURCE_ID_IMAGE_NUM_LARGE_5,
+  RESOURCE_ID_IMAGE_NUM_LARGE_6, RESOURCE_ID_IMAGE_NUM_LARGE_7,
+  RESOURCE_ID_IMAGE_NUM_LARGE_8, RESOURCE_ID_IMAGE_NUM_LARGE_9,
+};
+
+static const uint32_t s_num_small_ids[10] = {
+  RESOURCE_ID_IMAGE_NUM_SMALL_0, RESOURCE_ID_IMAGE_NUM_SMALL_1,
+  RESOURCE_ID_IMAGE_NUM_SMALL_2, RESOURCE_ID_IMAGE_NUM_SMALL_3,
+  RESOURCE_ID_IMAGE_NUM_SMALL_4, RESOURCE_ID_IMAGE_NUM_SMALL_5,
+  RESOURCE_ID_IMAGE_NUM_SMALL_6, RESOURCE_ID_IMAGE_NUM_SMALL_7,
+  RESOURCE_ID_IMAGE_NUM_SMALL_8, RESOURCE_ID_IMAGE_NUM_SMALL_9,
+};
+
+static GBitmap *s_num_large[10];
+static GBitmap *s_num_small[10];
+
+void panels_load_digits(void) {
+  for (int i = 0; i < 10; i++) {
+    s_num_large[i] = gbitmap_create_with_resource(s_num_large_ids[i]);
+    s_num_small[i] = gbitmap_create_with_resource(s_num_small_ids[i]);
+  }
+}
+
+void panels_unload_digits(void) {
+  for (int i = 0; i < 10; i++) {
+    gbitmap_destroy(s_num_large[i]);
+    gbitmap_destroy(s_num_small[i]);
+  }
+}
+
+static void draw_digit(GContext *ctx, GBitmap *bmp, GPoint origin) {
+  GRect b = gbitmap_get_bounds(bmp);
+  graphics_context_set_compositing_mode(ctx, GCompOpSet);
+  graphics_draw_bitmap_in_rect(ctx, bmp, GRect(origin.x, origin.y, b.size.w, b.size.h));
+}
+
+void panels_draw_hours(GContext *ctx, GRect bounds, int hours) {
+  GBitmap *tens_bmp = s_num_large[hours / 10];
+  GBitmap *ones_bmp = s_num_large[hours % 10];
+  int16_t tens_w = gbitmap_get_bounds(tens_bmp).size.w;
+  draw_digit(ctx, tens_bmp, bounds.origin);
+  draw_digit(ctx, ones_bmp, GPoint(bounds.origin.x + tens_w + 2, bounds.origin.y));
+}
+
+void panels_draw_minutes(GContext *ctx, GRect bounds, int minutes) {
+  GBitmap *tens_bmp = s_num_small[minutes / 10];
+  GBitmap *ones_bmp = s_num_small[minutes % 10];
+  int16_t tens_w = gbitmap_get_bounds(tens_bmp).size.w;
+  draw_digit(ctx, tens_bmp, bounds.origin);
+  draw_digit(ctx, ones_bmp, GPoint(bounds.origin.x + tens_w + 2, bounds.origin.y));
 }
