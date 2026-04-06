@@ -37,9 +37,13 @@ static void canvas_draw_panel_content(Layer *layer, GContext *ctx) {
   GRect bound_3 = GRect(START_MARGIN + (2 * (PANEL_BOX_SZ + PANEL_BOX_SPACING)), h - (PANEL_BOX_SZ + PANEL_BOX_BOTTOM) + 1, PANEL_BOX_SZ, PANEL_BOX_SZ);
   GRect bound_4 = GRect(START_MARGIN + (3 * (PANEL_BOX_SZ + PANEL_BOX_SPACING)), h - (PANEL_BOX_SZ + PANEL_BOX_BOTTOM) + 1, PANEL_BOX_SZ, PANEL_BOX_SZ);
 
+  time_t now = time(NULL);
+  struct tm *t = localtime(&now);
+  int weekday = (t->tm_wday == 0) ? 7 : t->tm_wday;
+
   // Bottom panel row: 3 equal boxes
   graphics_draw_rect(ctx, bound_1);
-  panels_draw_aperture(ctx, bound_1, 2);
+  panels_draw_aperture(ctx, bound_1, weekday);
 }
 
 static void canvas_update_proc(Layer *layer, GContext *ctx) {
