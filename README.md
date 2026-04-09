@@ -6,7 +6,9 @@
   <a href="https://github.com/thementalgoose/pebble-testchamber/releases"><img src="https://img.shields.io/github/v/release/thementalgoose/pebble-testchamber"/></a> 
 </p>
 
-Pebble watchface, inspired by the Portal test chamber boards 🎉
+Pebble watchface made to mirror the Portal test chamber boards 🎉
+
+This is inspired by https://apps.repebble.com/portal-sign_5832c17200355a8634000185 but intended to be more customisable / scalable in the long term
 
 | Codename | Pebble name       | Watchface |
 |----------|-------------------|------|
