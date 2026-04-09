@@ -27,15 +27,7 @@
       "watchface": true
     },
     "messageKeys": [
-      "BATTERY_INDICATOR",
-      "PANEL_SLOT_1",
-      "PANEL_SLOT_2",
-      "PANEL_SLOT_3",
-      "PANEL_SLOT_4",
-      "PANEL_SLOT_5",
-      "PANEL_SLOT_6",
-      "PANEL_SLOT_7",
-      "PANEL_SLOT_8"
+      "BATTERY_INDICATOR"
     ],
     "resources": {
       "media": [
