@@ -27,6 +27,7 @@
       "watchface": true
     },
     "messageKeys": [
+      "BATTERY_INDICATOR",
       "PANEL_SLOT_1",
       "PANEL_SLOT_2",
       "PANEL_SLOT_3",

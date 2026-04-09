@@ -3,6 +3,7 @@
 
 static Layer *s_battery_layer;
 static int    s_charge_percent = 100;
+static bool   s_clay_mode      = false;
 
 static void battery_callback(BatteryChargeState state) {
   s_charge_percent = state.charge_percent;
@@ -14,7 +15,8 @@ static void battery_layer_update_proc(Layer *layer, GContext *ctx) {
 
   int line_step   = BAR_LINE_W + BAR_LINE_GAP;
   int total_lines = bounds.size.w / line_step;
-  int filled      = (total_lines * s_charge_percent) / 100;
+  int percent     = s_clay_mode ? 100 : s_charge_percent;
+  int filled      = (total_lines * percent) / 100;
 
   graphics_context_set_stroke_color(ctx, GColorBlack);
   graphics_draw_line(ctx, GPoint(0, 0), GPoint(bounds.size.w, 0));
@@ -29,6 +31,9 @@ static void battery_layer_update_proc(Layer *layer, GContext *ctx) {
 }
 
 Layer *battery_layer_create(GRect frame) {
+  s_clay_mode = persist_exists(MESSAGE_KEY_BATTERY_INDICATOR)
+                ? !persist_read_bool(MESSAGE_KEY_BATTERY_INDICATOR)
+                : false;
 
   s_battery_layer = layer_create(frame);
   layer_set_update_proc(s_battery_layer, battery_layer_update_proc);
@@ -37,6 +42,11 @@ Layer *battery_layer_create(GRect frame) {
   battery_state_service_subscribe(battery_callback);
 
   return s_battery_layer;
+}
+
+void battery_set_clay_mode(bool clay) {
+  s_clay_mode = clay;
+  layer_mark_dirty(s_battery_layer);
 }
 
 void battery_layer_destroy(void) {

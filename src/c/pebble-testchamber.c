@@ -109,7 +109,19 @@ static void window_unload(Window *window) {
   panels_unload(s_cube_bitmap);
 }
 
+static void inbox_received_handler(DictionaryIterator *iter, void *context) {
+  Tuple *battery_indicator = dict_find(iter, MESSAGE_KEY_BATTERY_INDICATOR);
+  if (battery_indicator) {
+    bool show_real = battery_indicator->value->int32 != 0;
+    persist_write_bool(MESSAGE_KEY_BATTERY_INDICATOR, show_real);
+    battery_set_clay_mode(!show_real);
+  }
+}
+
 static void init(void) {
+  app_message_register_inbox_received(inbox_received_handler);
+  app_message_open(APP_MESSAGE_INBOX_SIZE_MINIMUM, APP_MESSAGE_OUTBOX_SIZE_MINIMUM);
+
   s_window = window_create();
   window_set_window_handlers(s_window, (WindowHandlers){
     .load   = window_load,
