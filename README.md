@@ -25,6 +25,7 @@ Pebble watchface, inspired by the Portal test chamber boards 🎉
 - [ ] Configure each panel individually
 - [ ] Support sensor data embedded in the panels
 - [ ] Support inverted colour scheme (?)
+- [ ] Connection status
 
 #### Building
 
