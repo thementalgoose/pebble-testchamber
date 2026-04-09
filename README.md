@@ -10,8 +10,8 @@ Pebble watchface made to mirror the Portal test chamber boards 🎉
 
 This is inspired by https://apps.repebble.com/portal-sign_5832c17200355a8634000185 but intended to be more customisable / scalable in the long term
 
-| Codename | Pebble name       | Watchface |
-|----------|-------------------|------|
+| Codename | Pebble name       | Watchface                                               |
+|----------|-------------------|---------------------------------------------------------|
 | aplite   | Pebble            | <img src="appstore/basalt/watchface.png" width="120"/>  |
 | basalt   | Pebble Time       | <img src="appstore/basalt/watchface.png" width="120"/>  |
 | chalk    | Pebble Time Round | <img src="appstore/chalk/watchface.png" width="120"/>   |
