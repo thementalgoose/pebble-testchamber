@@ -6,6 +6,8 @@
   <a href="https://github.com/thementalgoose/pebble-testchamber/releases"><img src="https://img.shields.io/github/v/release/thementalgoose/pebble-testchamber"/></a> 
 </p>
 
+Pebble watchface, inspired by the Portal test chamber boards 🎉
+
 | Codename | Pebble name       | Watchface |
 |----------|-------------------|------|
 | aplite   | Pebble            | <img src="appstore/basalt/watchface.png" width="120"/>  |
@@ -16,13 +18,13 @@
 | flint    | Pebble 2 Duo      | <img src="appstore/flint/watchface.png" width="120"/>   |
 | gabbro   | Pebble Round 2    | <img src="appstore/gabbro/watchface.png" width="150"/>  |
 
-Pebble watchface, inspired by the Portal test chamber boards 🎉
-
 ### Currently supported
 
 - [x] Adaptive to all supported pebble sizes
 - [x] Configure built in battery percentage
-- [ ] Configure each panel 
+- [ ] Configure each panel individually
+- [ ] Support sensor data embedded in the panels
+- [ ] Support inverted colour scheme (?)
 
 #### Building
 
