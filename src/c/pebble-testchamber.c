@@ -42,8 +42,11 @@ static void canvas_draw_panel_content(Layer *layer, GContext *ctx) {
   int weekday = (t->tm_wday == 0) ? 7 : t->tm_wday;
 
   // Bottom panel row: 3 equal boxes
-  graphics_draw_rect(ctx, bound_1);
   panels_draw_aperture(ctx, bound_1, weekday);
+
+  GBitmap *glados = panels_load(PANEL_BALLDROP);
+  graphics_draw_bitmap_in_rect(ctx, glados, bound_2);
+  panels_unload(glados);
 }
 
 static void canvas_update_proc(Layer *layer, GContext *ctx) {
