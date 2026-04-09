@@ -1,9 +1,12 @@
 #pragma once
 
+#define PEBBLE_ROUND            PBL_IF_ROUND_ELSE(true, false)
+#define PEBBLE_LARGE            PBL_DISPLAY_WIDTH > 200
+
 // ---------------------------------------------------------------------------
 // Layout - All
 // ---------------------------------------------------------------------------
-#define EDGE_LEFT               PBL_IF_ROUND_ELSE(44, 10)
+#define EDGE_LEFT               PBL_IF_ROUND_ELSE(PEBBLE_LARGE ? 60 : 42, 10)
 #define EDGE_TOP                PBL_IF_ROUND_ELSE(10, 6)
 #define EDGE_BOTTOM             PBL_IF_ROUND_ELSE(10, 2)
 #define EDGE_RIGHT              2        

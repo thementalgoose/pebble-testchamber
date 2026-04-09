@@ -20,13 +20,16 @@ static void canvas_draw_panels(Layer *layer, GContext *ctx) {
 
   GRect box_1 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 0), h - (EDGE_BOTTOM + PANEL_HEIGHT), PANEL_WIDTH, PANEL_HEIGHT);
   GRect box_2 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 1), h - (EDGE_BOTTOM + PANEL_HEIGHT), PANEL_WIDTH, PANEL_HEIGHT);
-  GRect box_3 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 2), h - (EDGE_BOTTOM + PANEL_HEIGHT), PANEL_WIDTH, PANEL_HEIGHT);
-
+  
   graphics_draw_rect(ctx, box_1);
   graphics_draw_rect(ctx, box_2);
-  graphics_draw_rect(ctx, box_3);
 
-  if (PANEL_EXTRA_COLUMN) { 
+  if (PEBBLE_LARGE || !PEBBLE_ROUND) { 
+    GRect box_3 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 2), h - (EDGE_BOTTOM + PANEL_HEIGHT), PANEL_WIDTH, PANEL_HEIGHT);
+    graphics_draw_rect(ctx, box_3);
+  }
+
+  if (PANEL_EXTRA_COLUMN && !PEBBLE_ROUND) { 
     GRect box_4 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 3), h - (EDGE_BOTTOM + PANEL_HEIGHT), PANEL_WIDTH, PANEL_HEIGHT);
     graphics_draw_rect(ctx, box_4);
   }
