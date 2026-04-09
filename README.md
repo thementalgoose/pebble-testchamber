@@ -1,7 +1,7 @@
 # Portal Test Chamber
 
 <p>
-  <a href=""><img src="https://img.shields.io/static/v1?label=App%20Listing&message=%20&logoColor=white&color=833FD6&style=flat"/></a>
+  <a href="https://apps.repebble.com/4e59818904134ba485cd636e"><img src="https://img.shields.io/static/v1?label=App%20Listing&message=%20&logoColor=white&color=833FD6&style=flat"/></a>
   <a href="https://developer.repebble.com/dashboard/"><img src="https://img.shields.io/static/v1?label=Pebble%20Developer%20Portal&message=%20&logoColor=white&color=FC6251&style=flat"/></a> * 
   <a href="https://github.com/thementalgoose/pebble-testchamber/releases"><img src="https://img.shields.io/github/v/release/thementalgoose/pebble-testchamber"/></a> 
 </p>
