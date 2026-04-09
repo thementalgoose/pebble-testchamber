@@ -26,81 +26,27 @@ module.exports = [
   {
     type: 'heading',
     defaultValue: 'Test Chamber',
-    size: 1,
+    size: 2,
+  },
+  {
+    type: 'text',
+    defaultValue: 'Configure below',
+    size: 5,
   },
   {
     type: 'section',
     items: [
       {
         type: 'heading',
-        defaultValue: 'Bottom Row',
+        defaultValue: 'Battery Indicator',
       },
       {
-        type: 'select',
-        messageKey: 'PANEL_SLOT_1',
-        label: 'Slot 1',
-        defaultValue: 3,
-        options: PANEL_OPTIONS,
-      },
-      {
-        type: 'select',
-        messageKey: 'PANEL_SLOT_2',
-        label: 'Slot 2',
-        defaultValue: 2,
-        options: PANEL_OPTIONS,
-      },
-      {
-        type: 'select',
-        messageKey: 'PANEL_SLOT_3',
-        label: 'Slot 3',
-        defaultValue: 0,
-        options: PANEL_OPTIONS,
-      },
-      {
-        type: 'select',
-        messageKey: 'PANEL_SLOT_4',
-        label: 'Slot 4 (wide displays only)',
-        defaultValue: 20,
-        options: PANEL_OPTIONS,
-      },
-    ],
-  },
-  {
-    type: 'section',
-    items: [
-      {
-        type: 'heading',
-        defaultValue: 'Top Row (tall displays only)',
-      },
-      {
-        type: 'select',
-        messageKey: 'PANEL_SLOT_5',
-        label: 'Slot 5',
-        defaultValue: 19,
-        options: PANEL_OPTIONS,
-      },
-      {
-        type: 'select',
-        messageKey: 'PANEL_SLOT_6',
-        label: 'Slot 6',
-        defaultValue: 11,
-        options: PANEL_OPTIONS,
-      },
-      {
-        type: 'select',
-        messageKey: 'PANEL_SLOT_7',
-        label: 'Slot 7',
-        defaultValue: 6,
-        options: PANEL_OPTIONS,
-      },
-      {
-        type: 'select',
-        messageKey: 'PANEL_SLOT_8',
-        label: 'Slot 8 (wide displays only)',
-        defaultValue: 17,
-        options: PANEL_OPTIONS,
-      },
-    ],
+        type: 'toggle',
+        messageKey: 'BATTERY_INDICATOR',
+        label: 'Show battery percentage',
+        defaultValue: true,
+      }
+    ]
   },
   {
     type: 'submit',
