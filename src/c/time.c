@@ -28,7 +28,7 @@ void time_update(void) {
   s_minutes_val = t->tm_min;
 
   static char s_date[12];
-  strftime(s_date, sizeof(s_date), "%d %b", t);
+  strftime(s_date, sizeof(s_date), "%d/%m", t);
   text_layer_set_text(s_date_layer, s_date);
 
   layer_mark_dirty(s_time_layer);

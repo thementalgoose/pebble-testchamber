@@ -151,6 +151,111 @@
         },
         {
           "type": "bitmap",
+          "name": "IMAGE_PANEL_ATLAS_PBODY",
+          "file": "images/panel-atlas-pbody.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_BALLDROP",
+          "file": "images/panel-balldrop.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_BALLFACE",
+          "file": "images/panel-ballface.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_BOUNCE",
+          "file": "images/panel-bounce.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_CAKE",
+          "file": "images/panel-cake.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_CUBE",
+          "file": "images/panel-cube.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_CUBEFACE",
+          "file": "images/panel-cubeface.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_CUBEHEAD",
+          "file": "images/panel-cubehead.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_DODGE",
+          "file": "images/panel-dodge.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_DROP",
+          "file": "images/panel-drop.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_DROWNING",
+          "file": "images/panel-drowning.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_GLADOS",
+          "file": "images/panel-glados.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_JUMPPAD",
+          "file": "images/panel-jumppad.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_LASERCUBE",
+          "file": "images/panel-lasercube.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_PORTALBRIDGE",
+          "file": "images/panel-portalbridge.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_PORTALFLY",
+          "file": "images/panel-portalfly.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_PORTALFLY2",
+          "file": "images/panel-portalfly2.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_POTATO",
+          "file": "images/panel-potato.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_SLIDERUN",
+          "file": "images/panel-sliderun.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_TURRET",
+          "file": "images/panel-turret.png"
+        },
+        {
+          "type": "bitmap",
+          "name": "IMAGE_PANEL_WHEATLEY",
+          "file": "images/panel-wheatley.png"
+        },
+        {
+          "type": "bitmap",
           "name": "IMAGE_PANEL_APERATURE_0",
           "file": "images/panel-aperature-0.png"
         },
