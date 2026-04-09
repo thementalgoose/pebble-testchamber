@@ -21,6 +21,9 @@ static void canvas_draw_panels(Layer *layer, GContext *ctx) {
   GRect box_1 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 0), h - (EDGE_BOTTOM + PANEL_HEIGHT), PANEL_WIDTH, PANEL_HEIGHT);
   GRect box_2 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 1), h - (EDGE_BOTTOM + PANEL_HEIGHT), PANEL_WIDTH, PANEL_HEIGHT);
   
+  panels_draw_aperture(ctx, box_1, 7);
+  panels_draw_panel(ctx, box_2, PANEL_CUBE_DROP);
+
   graphics_draw_rect(ctx, box_1);
   graphics_draw_rect(ctx, box_2);
 
@@ -49,28 +52,6 @@ static void canvas_draw_panels(Layer *layer, GContext *ctx) {
       graphics_draw_rect(ctx, box_8);
     }
   }
-
-}
-
-static void canvas_draw_panel_content(Layer *layer, GContext *ctx) { 
-  // GRect bounds = layer_get_bounds(layer);
-  // int16_t w = bounds.size.w;
-  // int16_t h = bounds.size.h;
-
-  // GRect bound_1 = GRect(START_MARGIN, h - (PANEL_BOX_SZ + PANEL_BOX_BOTTOM), PANEL_BOX_SZ, PANEL_BOX_SZ);
-  // GRect bound_2 = GRect(START_MARGIN + (1 * (PANEL_BOX_SZ + PANEL_BOX_SPACING)), h - (PANEL_BOX_SZ + PANEL_BOX_BOTTOM) + 1, PANEL_BOX_SZ, PANEL_BOX_SZ);
-  // GRect bound_3 = GRect(START_MARGIN + (2 * (PANEL_BOX_SZ + PANEL_BOX_SPACING)), h - (PANEL_BOX_SZ + PANEL_BOX_BOTTOM) + 1, PANEL_BOX_SZ, PANEL_BOX_SZ);
-  // GRect bound_4 = GRect(START_MARGIN + (3 * (PANEL_BOX_SZ + PANEL_BOX_SPACING)), h - (PANEL_BOX_SZ + PANEL_BOX_BOTTOM) + 1, PANEL_BOX_SZ, PANEL_BOX_SZ);
-
-  // time_t now = time(NULL);
-  // struct tm *t = localtime(&now);
-  // int weekday = (t->tm_wday == 0) ? 7 : t->tm_wday;
-
-  // // Bottom panel row: 3 equal boxes
-  // panels_draw_aperture(ctx, bound_1, weekday);
-
-  // panels_draw_panel(ctx, bound_2, PANEL_BALLDROP);
-  // panels_draw_panel(ctx, bound_3, PANEL_ATLAS_PBODY);
 }
 
 static void canvas_top_divider(Layer *layer, GContext *ctx) {
@@ -102,12 +83,6 @@ static void window_load(Window *window) {
   // -----------------------------------------------------------------
   // From Bottom 
   // -----------------------------------------------------------------
-
-  // if (PANEL_EXTRA_COLUMN)
-  // 3x1
-  // 4x2
-  
-
 
   // Panels
   s_canvas_panels = layer_create(bounds);
