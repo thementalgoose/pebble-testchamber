@@ -10,10 +10,10 @@ static int s_minutes_val = 0;
 
 static void time_layer_update_proc(Layer *layer, GContext *ctx) {
   GRect bounds = layer_get_bounds(layer);
-  panels_draw_hours(ctx, GRect(0, 0, bounds.size.w, HOURS_H), s_hours_val);
+  panels_draw_hours(ctx, GRect(0, 0, bounds.size.w, HOURS_HEIGHT), s_hours_val);
   panels_draw_minutes(ctx, GRect(MINUTES_OFFSET_X, MINUTES_OFFSET_Y,
                                  bounds.size.w - MINUTES_OFFSET_X,
-                                 HOURS_H - MINUTES_OFFSET_Y), s_minutes_val);
+                                 HOURS_HEIGHT - MINUTES_OFFSET_Y), s_minutes_val);
 }
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
