@@ -27,7 +27,7 @@ This is inspired by https://apps.repebble.com/portal-sign_5832c17200355a86340001
 - [ ] Configure each panel individually
 - [ ] Support sensor data embedded in the panels
 - [ ] Support inverted colour scheme (?)
-- [ ] Connection status
+- [x] Connection status
 
 #### Building
 

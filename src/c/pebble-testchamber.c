@@ -3,15 +3,16 @@
 #include "panels.h"
 #include "battery.h"
 #include "time.h"
+#include "disconnection.h"
 
-static Window     *s_window;
-static Layer      *s_canvas_layer;
-static Layer      *s_canvas_panels;
-static Layer      *s_canvas_panel_content;
+static Window      *s_window;
+static Layer       *s_canvas_layer;
+static Layer       *s_canvas_panels;
+static Layer       *s_canvas_panel_content;
 static BitmapLayer *s_cube_layer;
-static GBitmap    *s_cube_bitmap;
+static GBitmap     *s_cube_bitmap;
 
-static void canvas_draw_panels(Layer *layer, GContext *ctx) { 
+static void canvas_draw_panels(Layer *layer, GContext *ctx) {
   GRect bounds = layer_get_bounds(layer);
   int16_t w = bounds.size.w;
   int16_t h = bounds.size.h;
@@ -87,6 +88,9 @@ static void window_load(Window *window) {
   Layer *time_layer = time_layer_create(GRect(EDGE_LEFT, EDGE_TOP + HOURS_TOP, w - (EDGE_LEFT + EDGE_RIGHT), HOURS_HEIGHT));
   layer_add_child(window_layer, time_layer);
 
+  // Disconnection bar — full width, EDGE_TOP high, hidden when connected
+  layer_add_child(window_layer, disconnection_layer_create(GRect(0, 0, w, EDGE_TOP + DIVIDER_HEIGHT)));
+
   // -----------------------------------------------------------------
   // From Bottom 
   // -----------------------------------------------------------------
@@ -114,6 +118,7 @@ static void window_unload(Window *window) {
   battery_layer_destroy();
   bitmap_layer_destroy(s_cube_layer);
   panels_unload(s_cube_bitmap);
+  disconnection_layer_destroy();
 }
 
 static void inbox_received_handler(DictionaryIterator *iter, void *context) {
