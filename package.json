@@ -176,18 +176,8 @@
         },
         {
           "type": "bitmap",
-          "name": "IMAGE_PANEL_CUBE",
-          "file": "images/panel-cube.png"
-        },
-        {
-          "type": "bitmap",
           "name": "IMAGE_PANEL_CUBEFACE",
           "file": "images/panel-cubeface.png"
-        },
-        {
-          "type": "bitmap",
-          "name": "IMAGE_PANEL_CUBEHEAD",
-          "file": "images/panel-cubehead.png"
         },
         {
           "type": "bitmap",

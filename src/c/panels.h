@@ -9,9 +9,7 @@ typedef enum {
   PANEL_BALLFACE,
   PANEL_BOUNCE,
   PANEL_CAKE,
-  PANEL_CUBE,
   PANEL_CUBEFACE,
-  PANEL_CUBEHEAD,
   PANEL_DODGE,
   PANEL_DROP,
   PANEL_DROWNING,
@@ -31,3 +29,4 @@ typedef enum {
 GBitmap *panels_load(Panel panel);
 void     panels_unload(GBitmap *bitmap);
 void     panels_draw_aperture(GContext *ctx, GRect box, int level);
+void     panels_draw_panel(GContext *ctx, GRect box, Panel panel);

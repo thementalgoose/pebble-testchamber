@@ -49,7 +49,7 @@ TextLayer *time_date_layer_create(GRect frame) {
   s_date_layer = text_layer_create(frame);
   text_layer_set_background_color(s_date_layer, GColorClear);
   text_layer_set_text_color(s_date_layer, GColorBlack);
-  text_layer_set_font(s_date_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
+  text_layer_set_font(s_date_layer, DATE_FONT);
   text_layer_set_text_alignment(s_date_layer, GTextAlignmentLeft);
   return s_date_layer;
 }

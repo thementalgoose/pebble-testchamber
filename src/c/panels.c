@@ -12,9 +12,7 @@ static const uint32_t s_panel_resource_ids[PANEL_COUNT] = {
   [PANEL_BALLFACE]       = RESOURCE_ID_IMAGE_PANEL_BALLFACE,
   [PANEL_BOUNCE]         = RESOURCE_ID_IMAGE_PANEL_BOUNCE,
   [PANEL_CAKE]           = RESOURCE_ID_IMAGE_PANEL_CAKE,
-  [PANEL_CUBE]           = RESOURCE_ID_IMAGE_PANEL_CUBE,
   [PANEL_CUBEFACE]       = RESOURCE_ID_IMAGE_PANEL_CUBEFACE,
-  [PANEL_CUBEHEAD]       = RESOURCE_ID_IMAGE_PANEL_CUBEHEAD,
   [PANEL_DODGE]          = RESOURCE_ID_IMAGE_PANEL_DODGE,
   [PANEL_DROP]           = RESOURCE_ID_IMAGE_PANEL_DROP,
   [PANEL_DROWNING]       = RESOURCE_ID_IMAGE_PANEL_DROWNING,
@@ -52,6 +50,12 @@ void panels_unload(GBitmap *bitmap) {
 void panels_draw_aperture(GContext *ctx, GRect box, int level) {
   if (level < 1 || level > 7) return;
   GBitmap *bmp = gbitmap_create_with_resource(s_aperture_resource_ids[level]);
+  graphics_draw_bitmap_in_rect(ctx, bmp, box);
+  gbitmap_destroy(bmp);
+}
+
+void panels_draw_panel(GContext *ctx, GRect box, Panel panel) {
+  GBitmap *bmp = gbitmap_create_with_resource(s_panel_resource_ids[panel]);
   graphics_draw_bitmap_in_rect(ctx, bmp, box);
   gbitmap_destroy(bmp);
 }
