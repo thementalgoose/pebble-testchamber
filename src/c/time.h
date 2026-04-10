@@ -6,6 +6,7 @@ TextLayer *time_date_layer_create(GRect frame);
 void       time_update(void);
 void       time_destroy(void);
 void       time_set_ampm(bool show);
+void       time_set_date_format(int format);
 
 void panels_load_digits(void);
 void panels_unload_digits(void);

@@ -145,6 +145,15 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
     time_set_ampm(show_ampm);
   }
 
+  Tuple *date_format = dict_find(iter, MESSAGE_KEY_DATE_FORMAT);
+  if (date_format) {
+    int32_t format = date_format->type == TUPLE_CSTRING
+      ? atoi(date_format->value->cstring)
+      : date_format->value->int32;
+    persist_write_int(MESSAGE_KEY_DATE_FORMAT, format);
+    time_set_date_format(format);
+  }
+
   bool panels_changed = false;
   for (uint32_t key = MESSAGE_KEY_PANEL_1; key <= MESSAGE_KEY_PANEL_8; key++) {
     Tuple *panel = dict_find(iter, key);

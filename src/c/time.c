@@ -1,14 +1,16 @@
 #include "time.h"
 #include "panels.h"
 #include "constants.h"
+#include <ctype.h>
 
 static Layer     *s_time_layer;
 static TextLayer *s_date_layer;
 
-static int  s_hours_val   = 0;
-static int  s_minutes_val = 0;
-static bool s_is_pm       = false;
-static bool s_show_ampm   = true;
+static int  s_hours_val     = 0;
+static int  s_minutes_val   = 0;
+static bool s_is_pm         = false;
+static bool s_show_ampm     = true;
+static int  s_date_format   = 0;
 
 // ---------------------------------------------------------------------------
 // Digit bitmaps
@@ -108,7 +110,11 @@ void time_update(void) {
   s_is_pm       = t->tm_hour >= 12;
 
   static char s_date[12];
-  strftime(s_date, sizeof(s_date), "%d/%m", t);
+  const char *fmt = s_date_format == 1 ? "%m/%d"
+                  : s_date_format == 2 ? "%d %b"
+                  : "%d/%m";
+  strftime(s_date, sizeof(s_date), fmt, t);
+  for (char *p = s_date; *p; p++) *p = toupper((unsigned char)*p);
   text_layer_set_text(s_date_layer, s_date);
 
   layer_mark_dirty(s_time_layer);
@@ -121,6 +127,10 @@ Layer *time_layer_create(GRect frame) {
                 ? persist_read_bool(MESSAGE_KEY_AMPM_INDICATOR)
                 : true;
 
+  s_date_format = persist_exists(MESSAGE_KEY_DATE_FORMAT)
+                  ? persist_read_int(MESSAGE_KEY_DATE_FORMAT)
+                  : 0;
+
   s_time_layer = layer_create(frame);
   layer_set_update_proc(s_time_layer, time_layer_update_proc);
 
@@ -132,6 +142,11 @@ Layer *time_layer_create(GRect frame) {
 void time_set_ampm(bool show) {
   s_show_ampm = show;
   layer_mark_dirty(s_time_layer);
+}
+
+void time_set_date_format(int format) {
+  s_date_format = format;
+  time_update();
 }
 
 TextLayer *time_date_layer_create(GRect frame) {

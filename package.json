@@ -36,7 +36,8 @@
       "PANEL_6",
       "PANEL_7",
       "PANEL_8",
-      "AMPM_INDICATOR"
+      "AMPM_INDICATOR",
+      "DATE_FORMAT"
     ],
     "resources": {
       "media": [

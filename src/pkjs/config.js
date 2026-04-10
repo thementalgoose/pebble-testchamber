@@ -288,6 +288,17 @@ module.exports = [
         label: 'Show AM/PM label',
         description: 'Only applies when using 12h time format',
         defaultValue: true,
+      },
+      {
+        type: 'select',
+        messageKey: 'DATE_FORMAT',
+        label: 'Date format',
+        defaultValue: '0',
+        options: [
+          { label: 'dd/mm', value: '0' },
+          { label: 'mm/dd', value: '1' },
+          { label: 'dd MMM', value: '2' },
+        ],
       }
     ]
   },
