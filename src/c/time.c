@@ -66,23 +66,23 @@ static void time_layer_update_proc(Layer *layer, GContext *ctx) {
   if (!is_24h && s_hours_val < 10) {
     GBitmap *bmp = s_num_large[s_hours_val];
     draw_digit(ctx, bmp, GPoint(x, 0));
-    x += gbitmap_get_bounds(bmp).size.w + 2;
+    x += gbitmap_get_bounds(bmp).size.w + 4;
   } else {
     GBitmap *tens = s_num_large[s_hours_val / 10];
     GBitmap *ones = s_num_large[s_hours_val % 10];
     draw_digit(ctx, tens, GPoint(x, 0));
-    x += gbitmap_get_bounds(tens).size.w + 2;
+    x += gbitmap_get_bounds(tens).size.w + 4;
     draw_digit(ctx, ones, GPoint(x, 0));
-    x += gbitmap_get_bounds(ones).size.w + 2;
+    x += gbitmap_get_bounds(ones).size.w + 4;
   }
 
   // Minutes (small digits)
   GBitmap *min_tens = s_num_small[s_minutes_val / 10];
   GBitmap *min_ones = s_num_small[s_minutes_val % 10];
   draw_digit(ctx, min_tens, GPoint(x, HOURS_HEIGHT - 35));
-  x += gbitmap_get_bounds(min_tens).size.w + 2;
+  x += gbitmap_get_bounds(min_tens).size.w + 4;
   draw_digit(ctx, min_ones, GPoint(x, HOURS_HEIGHT - 35));
-  x += gbitmap_get_bounds(min_ones).size.w + 2;
+  x += gbitmap_get_bounds(min_ones).size.w + 4;
 
   // AM/PM indicator (12h mode only, when enabled via settings)
   if (!is_24h && s_show_ampm) {
