@@ -8,6 +8,7 @@ static TextLayer *s_date_layer;
 static int  s_hours_val   = 0;
 static int  s_minutes_val = 0;
 static bool s_is_pm       = false;
+static bool s_show_ampm   = true;
 
 // ---------------------------------------------------------------------------
 // Digit bitmaps
@@ -83,8 +84,8 @@ static void time_layer_update_proc(Layer *layer, GContext *ctx) {
   draw_digit(ctx, min_ones, GPoint(x, HOURS_HEIGHT - 35));
   x += gbitmap_get_bounds(min_ones).size.w + 2;
 
-  // AM/PM indicator (12h mode only)
-  if (!is_24h) {
+  // AM/PM indicator (12h mode only, when enabled via settings)
+  if (!is_24h && s_show_ampm) {
     graphics_context_set_text_color(ctx, GColorBlack);
     graphics_draw_text(ctx, s_is_pm ? "PM" : "AM",
                        fonts_get_system_font(FONT_KEY_GOTHIC_14),
@@ -116,12 +117,21 @@ void time_update(void) {
 Layer *time_layer_create(GRect frame) {
   panels_load_digits();
 
+  s_show_ampm = persist_exists(MESSAGE_KEY_AMPM_INDICATOR)
+                ? persist_read_bool(MESSAGE_KEY_AMPM_INDICATOR)
+                : true;
+
   s_time_layer = layer_create(frame);
   layer_set_update_proc(s_time_layer, time_layer_update_proc);
 
   tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
 
   return s_time_layer;
+}
+
+void time_set_ampm(bool show) {
+  s_show_ampm = show;
+  layer_mark_dirty(s_time_layer);
 }
 
 TextLayer *time_date_layer_create(GRect frame) {

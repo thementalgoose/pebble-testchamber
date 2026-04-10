@@ -35,7 +35,8 @@
       "PANEL_5",
       "PANEL_6",
       "PANEL_7",
-      "PANEL_8"
+      "PANEL_8",
+      "AMPM_INDICATOR"
     ],
     "resources": {
       "media": [
