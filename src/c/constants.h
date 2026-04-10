@@ -17,8 +17,10 @@
 // Layout - Time
 #define HOURS_HEIGHT            70
 #define HOURS_TOP               PBL_IF_ROUND_ELSE(10, 6)
-#define MINUTES_OFFSET_X        48
+#define MINUTES_LEFT            4
 #define MINUTES_OFFSET_Y        35
+#define AM_PM_LEFT              4
+#define AM_PM_OFFSET_Y          54
 // Layout - Computed
 #define FROM_TOP_HEIGHT         EDGE_TOP + DIVIDER_HEIGHT + HOURS_TOP + HOURS_HEIGHT
 // ---------------------------------------------------------------------------

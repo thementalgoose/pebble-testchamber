@@ -5,62 +5,9 @@
 static Layer     *s_time_layer;
 static TextLayer *s_date_layer;
 
-static int s_hours_val   = 0;
-static int s_minutes_val = 0;
-
-static void time_layer_update_proc(Layer *layer, GContext *ctx) {
-  GRect bounds = layer_get_bounds(layer);
-  panels_draw_hours(ctx, GRect(0, 0, bounds.size.w, HOURS_HEIGHT), s_hours_val);
-  panels_draw_minutes(ctx, GRect(MINUTES_OFFSET_X, MINUTES_OFFSET_Y,
-                                 bounds.size.w - MINUTES_OFFSET_X,
-                                 HOURS_HEIGHT - MINUTES_OFFSET_Y), s_minutes_val);
-}
-
-static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
-  time_update();
-}
-
-void time_update(void) {
-  time_t temp = time(NULL);
-  struct tm *t = localtime(&temp);
-
-  s_hours_val   = clock_is_24h_style() ? t->tm_hour : (t->tm_hour % 12 ?: 12);
-  s_minutes_val = t->tm_min;
-
-  static char s_date[12];
-  strftime(s_date, sizeof(s_date), "%d/%m", t);
-  text_layer_set_text(s_date_layer, s_date);
-
-  layer_mark_dirty(s_time_layer);
-}
-
-Layer *time_layer_create(GRect frame) {
-  panels_load_digits();
-
-  s_time_layer = layer_create(frame);
-  layer_set_update_proc(s_time_layer, time_layer_update_proc);
-
-  tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
-
-  return s_time_layer;
-}
-
-TextLayer *time_date_layer_create(GRect frame) {
-  s_date_layer = text_layer_create(frame);
-  text_layer_set_background_color(s_date_layer, GColorClear);
-  text_layer_set_text_color(s_date_layer, GColorBlack);
-  text_layer_set_font(s_date_layer, DATE_FONT);
-  text_layer_set_text_alignment(s_date_layer, GTextAlignmentLeft);
-  return s_date_layer;
-}
-
-void time_destroy(void) {
-  tick_timer_service_unsubscribe();
-  layer_destroy(s_time_layer);
-  text_layer_destroy(s_date_layer);
-  panels_unload_digits();
-}
-
+static int  s_hours_val   = 0;
+static int  s_minutes_val = 0;
+static bool s_is_pm       = false;
 
 // ---------------------------------------------------------------------------
 // Digit bitmaps
@@ -105,18 +52,90 @@ static void draw_digit(GContext *ctx, GBitmap *bmp, GPoint origin) {
   graphics_draw_bitmap_in_rect(ctx, bmp, GRect(origin.x, origin.y, b.size.w, b.size.h));
 }
 
-void panels_draw_hours(GContext *ctx, GRect bounds, int hours) {
-  GBitmap *tens_bmp = s_num_large[hours / 10];
-  GBitmap *ones_bmp = s_num_large[hours % 10];
-  int16_t tens_w = gbitmap_get_bounds(tens_bmp).size.w;
-  draw_digit(ctx, tens_bmp, bounds.origin);
-  draw_digit(ctx, ones_bmp, GPoint(bounds.origin.x + tens_w + 2, bounds.origin.y));
+// ---------------------------------------------------------------------------
+// Time layer — draws hours, minutes, and AM/PM sequentially
+// ---------------------------------------------------------------------------
+
+static void time_layer_update_proc(Layer *layer, GContext *ctx) {
+  bool is_24h = clock_is_24h_style();
+  GRect bounds = layer_get_bounds(layer);
+  int16_t x = 0;
+
+  // Hours (large digits) — suppress leading zero in 12h mode
+  if (!is_24h && s_hours_val < 10) {
+    GBitmap *bmp = s_num_large[s_hours_val];
+    draw_digit(ctx, bmp, GPoint(x, 0));
+    x += gbitmap_get_bounds(bmp).size.w + 2;
+  } else {
+    GBitmap *tens = s_num_large[s_hours_val / 10];
+    GBitmap *ones = s_num_large[s_hours_val % 10];
+    draw_digit(ctx, tens, GPoint(x, 0));
+    x += gbitmap_get_bounds(tens).size.w + 2;
+    draw_digit(ctx, ones, GPoint(x, 0));
+    x += gbitmap_get_bounds(ones).size.w + 2;
+  }
+
+  // Minutes (small digits)
+  GBitmap *min_tens = s_num_small[s_minutes_val / 10];
+  GBitmap *min_ones = s_num_small[s_minutes_val % 10];
+  draw_digit(ctx, min_tens, GPoint(x, HOURS_HEIGHT - 35));
+  x += gbitmap_get_bounds(min_tens).size.w + 2;
+  draw_digit(ctx, min_ones, GPoint(x, HOURS_HEIGHT - 35));
+  x += gbitmap_get_bounds(min_ones).size.w + 2;
+
+  // AM/PM indicator (12h mode only)
+  if (!is_24h) {
+    graphics_context_set_text_color(ctx, GColorBlack);
+    graphics_draw_text(ctx, s_is_pm ? "PM" : "AM",
+                       fonts_get_system_font(FONT_KEY_GOTHIC_14),
+                       GRect(x, HOURS_HEIGHT - 14, bounds.size.w - x, 14),
+                       GTextOverflowModeWordWrap, GTextAlignmentLeft, NULL);
+  }
 }
 
-void panels_draw_minutes(GContext *ctx, GRect bounds, int minutes) {
-  GBitmap *tens_bmp = s_num_small[minutes / 10];
-  GBitmap *ones_bmp = s_num_small[minutes % 10];
-  int16_t tens_w = gbitmap_get_bounds(tens_bmp).size.w;
-  draw_digit(ctx, tens_bmp, bounds.origin);
-  draw_digit(ctx, ones_bmp, GPoint(bounds.origin.x + tens_w + 2, bounds.origin.y));
+static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
+  time_update();
+}
+
+void time_update(void) {
+  time_t temp = time(NULL);
+  struct tm *t = localtime(&temp);
+
+  bool is_24h = clock_is_24h_style();
+  s_hours_val   = is_24h ? t->tm_hour : (t->tm_hour % 12 ?: 12);
+  s_minutes_val = t->tm_min;
+  s_is_pm       = t->tm_hour >= 12;
+
+  static char s_date[12];
+  strftime(s_date, sizeof(s_date), "%d/%m", t);
+  text_layer_set_text(s_date_layer, s_date);
+
+  layer_mark_dirty(s_time_layer);
+}
+
+Layer *time_layer_create(GRect frame) {
+  panels_load_digits();
+
+  s_time_layer = layer_create(frame);
+  layer_set_update_proc(s_time_layer, time_layer_update_proc);
+
+  tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
+
+  return s_time_layer;
+}
+
+TextLayer *time_date_layer_create(GRect frame) {
+  s_date_layer = text_layer_create(frame);
+  text_layer_set_background_color(s_date_layer, GColorClear);
+  text_layer_set_text_color(s_date_layer, GColorBlack);
+  text_layer_set_font(s_date_layer, DATE_FONT);
+  text_layer_set_text_alignment(s_date_layer, GTextAlignmentLeft);
+  return s_date_layer;
+}
+
+void time_destroy(void) {
+  tick_timer_service_unsubscribe();
+  layer_destroy(s_time_layer);
+  text_layer_destroy(s_date_layer);
+  panels_unload_digits();
 }

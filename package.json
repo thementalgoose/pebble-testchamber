@@ -40,18 +40,6 @@
     "resources": {
       "media": [
         {
-          "type": "font",
-          "name": "FONT_FUTURA_LIGHT_THIN_24",
-          "file": "fonts/futuralight.ttf",
-          "characterRegex": "[0-9]"
-        },
-        {
-          "type": "font",
-          "name": "FONT_FUTURA_LIGHT_THIN_64",
-          "file": "fonts/futuralight.ttf",
-          "characterRegex": "[0-9]"
-        },
-        {
           "type": "bitmap",
           "name": "IMAGE_NUM_LARGE_0",
           "file": "images/num-large/0.png"
