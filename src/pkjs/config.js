@@ -268,6 +268,10 @@ module.exports = [
         defaultValue: 'Battery Indicator',
       },
       {
+        type: 'text',
+        defaultValue: 'When enabled, the progress bar between the date and the panels will represent the current battery level',
+      },
+      {
         type: 'toggle',
         messageKey: 'BATTERY_INDICATOR',
         label: 'Show battery percentage',
@@ -288,6 +292,17 @@ module.exports = [
         label: 'Show AM/PM label',
         description: 'Only applies when using 12h time format',
         defaultValue: true,
+      },
+      {
+        type: 'select',
+        messageKey: 'DATE_FORMAT',
+        label: 'Date format',
+        defaultValue: '0',
+        options: [
+          { label: 'dd/mm', value: '0' },
+          { label: 'mm/dd', value: '1' },
+          { label: 'dd MMM', value: '2' },
+        ],
       }
     ]
   },
