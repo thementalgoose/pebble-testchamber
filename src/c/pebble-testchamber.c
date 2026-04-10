@@ -19,44 +19,53 @@ static void canvas_draw_panels(Layer *layer, GContext *ctx) {
 
   graphics_context_set_stroke_color(ctx, GColorBlack);
 
+  Panel panel_1 = persist_exists(MESSAGE_KEY_PANEL_1) ? persist_read_int(MESSAGE_KEY_PANEL_1) : PANEL_PORTALFLY;
+  Panel panel_2 = persist_exists(MESSAGE_KEY_PANEL_2) ? persist_read_int(MESSAGE_KEY_PANEL_2) : PANEL_CUBE_DROP;
+  Panel panel_3 = persist_exists(MESSAGE_KEY_PANEL_3) ? persist_read_int(MESSAGE_KEY_PANEL_3) : PANEL_DODGE;
+  Panel panel_4 = persist_exists(MESSAGE_KEY_PANEL_4) ? persist_read_int(MESSAGE_KEY_PANEL_4) : PANEL_PORTALFLY2;
+  Panel panel_5 = persist_exists(MESSAGE_KEY_PANEL_5) ? persist_read_int(MESSAGE_KEY_PANEL_5) : PANEL_ATLAS_PBODY;
+  Panel panel_6 = persist_exists(MESSAGE_KEY_PANEL_6) ? persist_read_int(MESSAGE_KEY_PANEL_6) : PANEL_DROWNING;
+  Panel panel_7 = persist_exists(MESSAGE_KEY_PANEL_7) ? persist_read_int(MESSAGE_KEY_PANEL_7) : PANEL_PORTALBRIDGE;
+  Panel panel_8 = persist_exists(MESSAGE_KEY_PANEL_8) ? persist_read_int(MESSAGE_KEY_PANEL_8) : PANEL_BALLFACE;
+
   GRect box_1 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 0), h - (EDGE_BOTTOM + PANEL_HEIGHT), PANEL_WIDTH, PANEL_HEIGHT);
   GRect box_2 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 1), h - (EDGE_BOTTOM + PANEL_HEIGHT), PANEL_WIDTH, PANEL_HEIGHT);
-  
+
   // panels_draw_aperture(ctx, box_1, 7);
-  panels_draw_panel(ctx, box_1, PANEL_PORTALFLY);
-  panels_draw_panel(ctx, box_2, PANEL_CUBE_DROP);
+  panels_draw_panel(ctx, box_1, panel_1);
+  panels_draw_panel(ctx, box_2, panel_2);
   graphics_draw_rect(ctx, box_1);
   graphics_draw_rect(ctx, box_2);
-  
-  if (PEBBLE_LARGE || !PEBBLE_ROUND) { 
+
+  if (PEBBLE_LARGE || !PEBBLE_ROUND) {
     GRect box_3 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 2), h - (EDGE_BOTTOM + PANEL_HEIGHT), PANEL_WIDTH, PANEL_HEIGHT);
-    panels_draw_panel(ctx, box_3, PANEL_DODGE);
+    panels_draw_panel(ctx, box_3, panel_3);
     graphics_draw_rect(ctx, box_3);
   }
 
-  if (PANEL_EXTRA_COLUMN && !PEBBLE_ROUND) { 
+  if (PANEL_EXTRA_COLUMN && !PEBBLE_ROUND) {
     GRect box_4 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 3), h - (EDGE_BOTTOM + PANEL_HEIGHT), PANEL_WIDTH, PANEL_HEIGHT);
-    panels_draw_panel(ctx, box_4, PANEL_PORTALFLY2);
+    panels_draw_panel(ctx, box_4, panel_4);
     graphics_draw_rect(ctx, box_4);
   }
 
-  if (PANEL_DUAL_ROW) { 
+  if (PANEL_DUAL_ROW) {
     GRect box_5 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 0), h - ((PANEL_HEIGHT * 2) + EDGE_BOTTOM + PANEL_INTER_SPACING), PANEL_WIDTH, PANEL_HEIGHT);
     GRect box_6 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 1), h - ((PANEL_HEIGHT * 2) + EDGE_BOTTOM + PANEL_INTER_SPACING), PANEL_WIDTH, PANEL_HEIGHT);
     GRect box_7 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 2), h - ((PANEL_HEIGHT * 2) + EDGE_BOTTOM + PANEL_INTER_SPACING), PANEL_WIDTH, PANEL_HEIGHT);
 
-    panels_draw_panel(ctx, box_5, PANEL_ATLAS_PBODY);
-    panels_draw_panel(ctx, box_6, PANEL_DROWNING);
-    panels_draw_panel(ctx, box_7, PANEL_PORTALBRIDGE);
-    
+    panels_draw_panel(ctx, box_5, panel_5);
+    panels_draw_panel(ctx, box_6, panel_6);
+    panels_draw_panel(ctx, box_7, panel_7);
+
     graphics_draw_rect(ctx, box_5);
     graphics_draw_rect(ctx, box_6);
     graphics_draw_rect(ctx, box_7);
-    
-    if (PANEL_EXTRA_COLUMN) { 
+
+    if (PANEL_EXTRA_COLUMN) {
       GRect box_8 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 3), h - ((PANEL_HEIGHT * 2) + EDGE_BOTTOM + PANEL_INTER_SPACING), PANEL_WIDTH, PANEL_HEIGHT);
-      
-      panels_draw_panel(ctx, box_8, PANEL_BALLFACE);
+
+      panels_draw_panel(ctx, box_8, panel_8);
       graphics_draw_rect(ctx, box_8);
     }
   }
@@ -127,6 +136,21 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
     bool show_real = battery_indicator->value->int32 != 0;
     persist_write_bool(MESSAGE_KEY_BATTERY_INDICATOR, show_real);
     battery_set_clay_mode(!show_real);
+  }
+
+  bool panels_changed = false;
+  for (uint32_t key = MESSAGE_KEY_PANEL_1; key <= MESSAGE_KEY_PANEL_8; key++) {
+    Tuple *panel = dict_find(iter, key);
+    if (panel) {
+      int32_t value = panel->type == TUPLE_CSTRING
+        ? atoi(panel->value->cstring)
+        : panel->value->int32;
+      persist_write_int(key, value);
+      panels_changed = true;
+    }
+  }
+  if (panels_changed) {
+    layer_mark_dirty(s_canvas_panels);
   }
 }
 

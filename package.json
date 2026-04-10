@@ -27,7 +27,15 @@
       "watchface": true
     },
     "messageKeys": [
-      "BATTERY_INDICATOR"
+      "BATTERY_INDICATOR",
+      "PANEL_1",
+      "PANEL_2",
+      "PANEL_3",
+      "PANEL_4",
+      "PANEL_5",
+      "PANEL_6",
+      "PANEL_7",
+      "PANEL_8"
     ],
     "resources": {
       "media": [
