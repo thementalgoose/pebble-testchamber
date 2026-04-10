@@ -24,7 +24,7 @@ var PANEL_OPTIONS = [
 
 function buildTable(columns, rows, isHideFinal) { 
   var result = "<p>Layout of the panels on the watch</p><br/>";
-  result += `<table style="border: 1px solid black; width: 100%;">`;
+  result += `<table style="border: 1px solid black; width: 100%; table-layout: fixed;">`;
   for (let r = 0; r < rows; r++) { 
     result += `<tr style="border: 1px solid black;">`;
     for (let c = 1; c <= columns; c++) { 
@@ -158,7 +158,7 @@ function configurationRoundSmall() {
       header,
       {
         type: "text",
-        defaultValue: buildTable(3, 1, false)
+        defaultValue: buildTable(3, 1, true)
       },
       {
         type: "select",
