@@ -22,6 +22,225 @@ var PANEL_OPTIONS = [
   { label: 'Wheatley',        value: 20 },
 ];
 
+function buildTable(columns, rows, isHideFinal) { 
+  var result = "<p>Layout of the panels on the watch</p><br/>";
+  result += `<table style="border: 1px solid black; width: 100%;">`;
+  for (let r = 0; r < rows; r++) { 
+    result += `<tr style="border: 1px solid black;">`;
+    for (let c = 1; c <= columns; c++) { 
+      if (r == rows - 1 && c == columns && isHideFinal) { 
+        result += `<th style="border: 1px solid black;"></th>`;
+      } else { 
+        result += `<th style="border: 1px solid black;">Panel ${(r * columns) + c}</th>`;
+      }
+    }
+    result += `</tr>`;
+  }
+  result += `</table>`;
+  return result;
+}
+
+let header = {
+  type: 'heading',
+  defaultValue: 'Panels',
+}
+
+function configurationSquareSmall() { 
+  return { 
+    type: 'section',
+    capabilities: ["DISPLAY_144x168"],
+    items: [
+      header,
+      {
+        type: "text",
+        defaultValue: buildTable(3, 1, false)
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_1",
+        defaultValue: 0,
+        label: "Panel 1",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_2",
+        defaultValue: 1,
+        label: "Panel 2",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_3",
+        defaultValue: 2,
+        label: "Panel 3",
+        options: PANEL_OPTIONS
+      }
+    ]
+  }
+}
+
+function configurationSquareLarge() { 
+  return { 
+    type: 'section',
+    capabilities: ["DISPLAY_200x228"],
+    items: [
+      header,
+      {
+        type: "text",
+        defaultValue: buildTable(4, 2, false)
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_1",
+        defaultValue: 0,
+        label: "Panel 1",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_2",
+        defaultValue: 1,
+        label: "Panel 2",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_3",
+        defaultValue: 2,
+        label: "Panel 3",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_4",
+        defaultValue: 2,
+        label: "Panel 4",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_5",
+        defaultValue: 2,
+        label: "Panel 5",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_6",
+        defaultValue: 2,
+        label: "Panel 6",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_7",
+        defaultValue: 2,
+        label: "Panel 7",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_8",
+        defaultValue: 2,
+        label: "Panel 8",
+        options: PANEL_OPTIONS
+      }
+    ]
+  }
+}
+
+function configurationRoundSmall() { 
+  return { 
+    type: 'section',
+    capabilities: ["DISPLAY_180x180_ROUND"],
+    items: [
+      header,
+      {
+        type: "text",
+        defaultValue: buildTable(3, 1, false)
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_1",
+        defaultValue: 0,
+        label: "Panel 1",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_2",
+        defaultValue: 1,
+        label: "Panel 2",
+        options: PANEL_OPTIONS
+      }
+    ]
+  }
+}
+
+function configurationRoundLarge() { 
+  return { 
+    type: 'section',
+    capabilities: ["DISPLAY_260x260_ROUND"],
+    items: [
+      header,
+      {
+        type: "text",
+        defaultValue: buildTable(4, 2, true)
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_1",
+        defaultValue: 0,
+        label: "Panel 1",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_2",
+        defaultValue: 1,
+        label: "Panel 2",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_3",
+        defaultValue: 2,
+        label: "Panel 3",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_4",
+        defaultValue: 2,
+        label: "Panel 4",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_5",
+        defaultValue: 2,
+        label: "Panel 5",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_6",
+        defaultValue: 2,
+        label: "Panel 6",
+        options: PANEL_OPTIONS
+      },
+      {
+        type: "select",
+        messageKey: "PANEL_7",
+        defaultValue: 2,
+        label: "Panel 7",
+        options: PANEL_OPTIONS
+      }
+    ]
+  }
+}
+
 module.exports = [
   {
     type: 'heading',
@@ -48,6 +267,10 @@ module.exports = [
       }
     ]
   },
+  configurationSquareSmall(),
+  configurationSquareLarge(),
+  configurationRoundSmall(),
+  configurationRoundLarge(),
   {
     type: 'submit',
     defaultValue: 'Save',
