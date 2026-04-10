@@ -35,22 +35,11 @@
       "PANEL_5",
       "PANEL_6",
       "PANEL_7",
-      "PANEL_8"
+      "PANEL_8",
+      "AMPM_INDICATOR"
     ],
     "resources": {
       "media": [
-        {
-          "type": "font",
-          "name": "FONT_FUTURA_LIGHT_THIN_24",
-          "file": "fonts/futuralight.ttf",
-          "characterRegex": "[0-9]"
-        },
-        {
-          "type": "font",
-          "name": "FONT_FUTURA_LIGHT_THIN_64",
-          "file": "fonts/futuralight.ttf",
-          "characterRegex": "[0-9]"
-        },
         {
           "type": "bitmap",
           "name": "IMAGE_NUM_LARGE_0",

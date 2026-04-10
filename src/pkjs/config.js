@@ -275,6 +275,22 @@ module.exports = [
       }
     ]
   },
+  {
+    type: 'section',
+    items: [
+      {
+        type: 'heading',
+        defaultValue: 'Time',
+      },
+      {
+        type: 'toggle',
+        messageKey: 'AMPM_INDICATOR',
+        label: 'Show AM/PM label',
+        description: 'Only applies when using 12h time format',
+        defaultValue: true,
+      }
+    ]
+  },
   configurationSquareSmall(),
   configurationSquareLarge(),
   configurationRoundSmall(),

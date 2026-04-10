@@ -138,6 +138,13 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
     battery_set_clay_mode(!show_real);
   }
 
+  Tuple *ampm_indicator = dict_find(iter, MESSAGE_KEY_AMPM_INDICATOR);
+  if (ampm_indicator) {
+    bool show_ampm = ampm_indicator->value->int32 != 0;
+    persist_write_bool(MESSAGE_KEY_AMPM_INDICATOR, show_ampm);
+    time_set_ampm(show_ampm);
+  }
+
   bool panels_changed = false;
   for (uint32_t key = MESSAGE_KEY_PANEL_1; key <= MESSAGE_KEY_PANEL_8; key++) {
     Tuple *panel = dict_find(iter, key);
@@ -152,6 +159,8 @@ static void inbox_received_handler(DictionaryIterator *iter, void *context) {
   if (panels_changed) {
     layer_mark_dirty(s_canvas_panels);
   }
+
+  
 }
 
 static void init(void) {
