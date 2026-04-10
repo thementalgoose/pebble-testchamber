@@ -268,6 +268,10 @@ module.exports = [
         defaultValue: 'Battery Indicator',
       },
       {
+        type: 'text',
+        defaultValue: 'When enabled, the progress bar between the date and the panels will represent the current battery level',
+      },
+      {
         type: 'toggle',
         messageKey: 'BATTERY_INDICATOR',
         label: 'Show battery percentage',
