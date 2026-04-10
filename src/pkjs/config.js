@@ -1,26 +1,34 @@
 var PANEL_OPTIONS = [
-  { label: 'Companion Cube',  value: 0  },
-  { label: 'Cube Drop',       value: 1  },
-  { label: 'Atlas & P-Body',  value: 2  },
-  { label: 'Ball Drop',       value: 3  },
-  { label: 'Ball Face',       value: 4  },
-  { label: 'Bounce',          value: 5  },
-  { label: 'Cake',            value: 6  },
-  { label: 'Cube Face',       value: 7  },
-  { label: 'Dodge',           value: 8  },
-  { label: 'Drop',            value: 9  },
-  { label: 'Drowning',        value: 10 },
-  { label: 'GLaDOS',          value: 11 },
-  { label: 'Jump Pad',        value: 12 },
-  { label: 'Laser Cube',      value: 13 },
-  { label: 'Portal Bridge',   value: 14 },
-  { label: 'Portal Fly',      value: 15 },
-  { label: 'Portal Fly 2',    value: 16 },
-  { label: 'Potato',          value: 17 },
-  { label: 'Slide Run',       value: 18 },
-  { label: 'Turret',          value: 19 },
-  { label: 'Wheatley',        value: 20 },
+  { label: 'Companion Cube',         value: 0  },
+  { label: 'Cube Drop',              value: 1  },
+  { label: 'Atlas & P-Body',         value: 2  },
+  { label: 'Ball Drop',              value: 3  },
+  { label: 'Ball to the face',       value: 4  },
+  { label: 'Bounce',                 value: 5  },
+  { label: 'Cake',                   value: 6  },
+  { label: 'Cube to the face',       value: 7  },
+  { label: 'Dodge turret',           value: 8  },
+  { label: 'Drop between portals',   value: 9  },
+  { label: 'Drowning',               value: 10 },
+  { label: 'GLaDOS',                 value: 11 },
+  { label: 'Jump Pad',               value: 12 },
+  { label: 'Laser Cube',             value: 13 },
+  { label: 'Portal Bridge',          value: 14 },
+  { label: 'Portal to portal fall',  value: 15 },
+  { label: 'Portal flying',          value: 16 },
+  { label: 'Potato',                 value: 17 },
+  { label: 'Slide Run',              value: 18 },
+  { label: 'Turret',                 value: 19 },
+  { label: 'Wheatley',               value: 20 },
 ];
+let DEFAULT_PANEL_1 = 15;
+let DEFAULT_PANEL_2 = 1;
+let DEFAULT_PANEL_3 = 8;
+let DEFAULT_PANEL_4 = 16;
+let DEFAULT_PANEL_5 = 2;
+let DEFAULT_PANEL_6 = 10;
+let DEFAULT_PANEL_7 = 14;
+let DEFAULT_PANEL_8 = 4;
 
 function buildTable(columns, rows, isHideFinal) { 
   var result = "<p>Layout of the panels on the watch</p><br/>";
@@ -58,21 +66,21 @@ function configurationSquareSmall() {
       {
         type: "select",
         messageKey: "PANEL_1",
-        defaultValue: 0,
+        defaultValue: DEFAULT_PANEL_1,
         label: "Panel 1",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_2",
-        defaultValue: 1,
+        defaultValue: DEFAULT_PANEL_2,
         label: "Panel 2",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_3",
-        defaultValue: 2,
+        defaultValue: DEFAULT_PANEL_3,
         label: "Panel 3",
         options: PANEL_OPTIONS
       }
@@ -92,57 +100,57 @@ function configurationSquareLarge() {
       },
       {
         type: "select",
-        messageKey: "PANEL_1",
-        defaultValue: 0,
+        messageKey: "PANEL_5",
+        defaultValue: DEFAULT_PANEL_5,
         label: "Panel 1",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
-        messageKey: "PANEL_2",
-        defaultValue: 1,
+        messageKey: "PANEL_6",
+        defaultValue: DEFAULT_PANEL_6,
         label: "Panel 2",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
-        messageKey: "PANEL_3",
-        defaultValue: 2,
+        messageKey: "PANEL_7",
+        defaultValue: DEFAULT_PANEL_7,
         label: "Panel 3",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
-        messageKey: "PANEL_4",
-        defaultValue: 2,
+        messageKey: "PANEL_8",
+        defaultValue: DEFAULT_PANEL_8,
         label: "Panel 4",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
-        messageKey: "PANEL_5",
-        defaultValue: 2,
+        messageKey: "PANEL_1",
+        defaultValue: DEFAULT_PANEL_1,
         label: "Panel 5",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
-        messageKey: "PANEL_6",
-        defaultValue: 2,
+        messageKey: "PANEL_2",
+        defaultValue: DEFAULT_PANEL_2,
         label: "Panel 6",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
-        messageKey: "PANEL_7",
-        defaultValue: 2,
+        messageKey: "PANEL_3",
+        defaultValue: DEFAULT_PANEL_3,
         label: "Panel 7",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
-        messageKey: "PANEL_8",
-        defaultValue: 2,
+        messageKey: "PANEL_4",
+        defaultValue: DEFAULT_PANEL_4,
         label: "Panel 8",
         options: PANEL_OPTIONS
       }
@@ -163,14 +171,14 @@ function configurationRoundSmall() {
       {
         type: "select",
         messageKey: "PANEL_1",
-        defaultValue: 0,
+        defaultValue: DEFAULT_PANEL_1,
         label: "Panel 1",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_2",
-        defaultValue: 1,
+        defaultValue: DEFAULT_PANEL_2,
         label: "Panel 2",
         options: PANEL_OPTIONS
       }
@@ -190,50 +198,50 @@ function configurationRoundLarge() {
       },
       {
         type: "select",
-        messageKey: "PANEL_1",
-        defaultValue: 0,
+        messageKey: "PANEL_5",
+        defaultValue: DEFAULT_PANEL_5,
         label: "Panel 1",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
-        messageKey: "PANEL_2",
-        defaultValue: 1,
+        messageKey: "PANEL_6",
+        defaultValue: DEFAULT_PANEL_6,
         label: "Panel 2",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
-        messageKey: "PANEL_3",
-        defaultValue: 2,
+        messageKey: "PANEL_7",
+        defaultValue: DEFAULT_PANEL_7,
         label: "Panel 3",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
-        messageKey: "PANEL_4",
-        defaultValue: 2,
+        messageKey: "PANEL_8",
+        defaultValue: DEFAULT_PANEL_8,
         label: "Panel 4",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
-        messageKey: "PANEL_5",
-        defaultValue: 2,
+        messageKey: "PANEL_1",
+        defaultValue: DEFAULT_PANEL_1,
         label: "Panel 5",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
-        messageKey: "PANEL_6",
-        defaultValue: 2,
+        messageKey: "PANEL_2",
+        defaultValue: DEFAULT_PANEL_2,
         label: "Panel 6",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
-        messageKey: "PANEL_7",
-        defaultValue: 2,
+        messageKey: "PANEL_3",
+        defaultValue: DEFAULT_PANEL_3,
         label: "Panel 7",
         options: PANEL_OPTIONS
       }
