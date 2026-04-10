@@ -21,6 +21,14 @@ var PANEL_OPTIONS = [
   { label: 'Turret',          value: 19 },
   { label: 'Wheatley',        value: 20 },
 ];
+let DEFAULT_PANEL_1 = 15;
+let DEFAULT_PANEL_2 = 1;
+let DEFAULT_PANEL_3 = 8;
+let DEFAULT_PANEL_4 = 16;
+let DEFAULT_PANEL_5 = 2;
+let DEFAULT_PANEL_6 = 10;
+let DEFAULT_PANEL_7 = 14;
+let DEFAULT_PANEL_8 = 4;
 
 function buildTable(columns, rows, isHideFinal) { 
   var result = "<p>Layout of the panels on the watch</p><br/>";
@@ -58,21 +66,21 @@ function configurationSquareSmall() {
       {
         type: "select",
         messageKey: "PANEL_1",
-        defaultValue: 0,
+        defaultValue: DEFAULT_PANEL_1,
         label: "Panel 1",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_2",
-        defaultValue: 1,
+        defaultValue: DEFAULT_PANEL_2,
         label: "Panel 2",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_3",
-        defaultValue: 2,
+        defaultValue: DEFAULT_PANEL_3,
         label: "Panel 3",
         options: PANEL_OPTIONS
       }
@@ -93,56 +101,56 @@ function configurationSquareLarge() {
       {
         type: "select",
         messageKey: "PANEL_5",
-        defaultValue: 0,
+        defaultValue: DEFAULT_PANEL_5,
         label: "Panel 1",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_6",
-        defaultValue: 1,
+        defaultValue: DEFAULT_PANEL_6,
         label: "Panel 2",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_7",
-        defaultValue: 2,
+        defaultValue: DEFAULT_PANEL_7,
         label: "Panel 3",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_8",
-        defaultValue: 2,
+        defaultValue: DEFAULT_PANEL_8,
         label: "Panel 4",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_1",
-        defaultValue: 2,
+        defaultValue: DEFAULT_PANEL_1,
         label: "Panel 5",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_2",
-        defaultValue: 2,
+        defaultValue: DEFAULT_PANEL_2,
         label: "Panel 6",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_3",
-        defaultValue: 2,
+        defaultValue: DEFAULT_PANEL_3,
         label: "Panel 7",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_4",
-        defaultValue: 2,
+        defaultValue: DEFAULT_PANEL_4,
         label: "Panel 8",
         options: PANEL_OPTIONS
       }
@@ -163,14 +171,14 @@ function configurationRoundSmall() {
       {
         type: "select",
         messageKey: "PANEL_1",
-        defaultValue: 0,
+        defaultValue: DEFAULT_PANEL_1,
         label: "Panel 1",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_2",
-        defaultValue: 1,
+        defaultValue: DEFAULT_PANEL_2,
         label: "Panel 2",
         options: PANEL_OPTIONS
       }
@@ -191,49 +199,49 @@ function configurationRoundLarge() {
       {
         type: "select",
         messageKey: "PANEL_5",
-        defaultValue: 0,
+        defaultValue: DEFAULT_PANEL_5,
         label: "Panel 1",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_6",
-        defaultValue: 1,
+        defaultValue: DEFAULT_PANEL_6,
         label: "Panel 2",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_7",
-        defaultValue: 2,
+        defaultValue: DEFAULT_PANEL_7,
         label: "Panel 3",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_8",
-        defaultValue: 2,
+        defaultValue: DEFAULT_PANEL_8,
         label: "Panel 4",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_1",
-        defaultValue: 2,
+        defaultValue: DEFAULT_PANEL_1,
         label: "Panel 5",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_2",
-        defaultValue: 2,
+        defaultValue: DEFAULT_PANEL_2,
         label: "Panel 6",
         options: PANEL_OPTIONS
       },
       {
         type: "select",
         messageKey: "PANEL_3",
-        defaultValue: 2,
+        defaultValue: DEFAULT_PANEL_3,
         label: "Panel 7",
         options: PANEL_OPTIONS
       }
