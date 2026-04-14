@@ -17,9 +17,10 @@ var PANEL_OPTIONS = [
   { label: 'Portal to portal fall',  value: 15 },
   { label: 'Portal flying',          value: 16 },
   { label: 'Potato',                 value: 17 },
-  { label: 'Slide Run',              value: 18 },
+  { label: 'Slide Run (steps)',      value: 18 },
   { label: 'Turret',                 value: 19 },
   { label: 'Wheatley',               value: 20 },
+  { label: 'Aperture (day of week)', value: 21 },
 ];
 let DEFAULT_PANEL_1 = 15;
 let DEFAULT_PANEL_2 = 1;

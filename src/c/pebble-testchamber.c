@@ -32,20 +32,20 @@ static void canvas_draw_panels(Layer *layer, GContext *ctx) {
   GRect box_2 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 1), h - (EDGE_BOTTOM + PANEL_HEIGHT), PANEL_WIDTH, PANEL_HEIGHT);
 
   // panels_draw_aperture(ctx, box_1, 7);
-  panels_draw_panel(ctx, box_1, panel_1);
-  panels_draw_panel(ctx, box_2, panel_2);
+  panels_draw_panel(ctx, box_1, panel_1, GPointZero, NULL);
+  panels_draw_panel(ctx, box_2, panel_2, GPointZero, NULL);
   graphics_draw_rect(ctx, box_1);
   graphics_draw_rect(ctx, box_2);
 
   if (PEBBLE_LARGE || !PEBBLE_ROUND) {
     GRect box_3 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 2), h - (EDGE_BOTTOM + PANEL_HEIGHT), PANEL_WIDTH, PANEL_HEIGHT);
-    panels_draw_panel(ctx, box_3, panel_3);
+    panels_draw_panel(ctx, box_3, panel_3, GPointZero, NULL);
     graphics_draw_rect(ctx, box_3);
   }
 
   if (PANEL_EXTRA_COLUMN && !PEBBLE_ROUND) {
     GRect box_4 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 3), h - (EDGE_BOTTOM + PANEL_HEIGHT), PANEL_WIDTH, PANEL_HEIGHT);
-    panels_draw_panel(ctx, box_4, panel_4);
+    panels_draw_panel(ctx, box_4, panel_4, GPointZero, NULL);
     graphics_draw_rect(ctx, box_4);
   }
 
@@ -54,9 +54,9 @@ static void canvas_draw_panels(Layer *layer, GContext *ctx) {
     GRect box_6 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 1), h - ((PANEL_HEIGHT * 2) + EDGE_BOTTOM + PANEL_INTER_SPACING), PANEL_WIDTH, PANEL_HEIGHT);
     GRect box_7 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 2), h - ((PANEL_HEIGHT * 2) + EDGE_BOTTOM + PANEL_INTER_SPACING), PANEL_WIDTH, PANEL_HEIGHT);
 
-    panels_draw_panel(ctx, box_5, panel_5);
-    panels_draw_panel(ctx, box_6, panel_6);
-    panels_draw_panel(ctx, box_7, panel_7);
+    panels_draw_panel(ctx, box_5, panel_5, GPointZero, NULL);
+    panels_draw_panel(ctx, box_6, panel_6, GPointZero, NULL);
+    panels_draw_panel(ctx, box_7, panel_7, GPointZero, NULL);
 
     graphics_draw_rect(ctx, box_5);
     graphics_draw_rect(ctx, box_6);
@@ -65,7 +65,7 @@ static void canvas_draw_panels(Layer *layer, GContext *ctx) {
     if (PANEL_EXTRA_COLUMN) {
       GRect box_8 = GRect(EDGE_LEFT + ((PANEL_WIDTH + PANEL_INTER_SPACING) * 3), h - ((PANEL_HEIGHT * 2) + EDGE_BOTTOM + PANEL_INTER_SPACING), PANEL_WIDTH, PANEL_HEIGHT);
 
-      panels_draw_panel(ctx, box_8, panel_8);
+      panels_draw_panel(ctx, box_8, panel_8, GPointZero, NULL);
       graphics_draw_rect(ctx, box_8);
     }
   }
