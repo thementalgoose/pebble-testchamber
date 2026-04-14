@@ -54,8 +54,11 @@ void panels_draw_aperture(GContext *ctx, GRect box, int level) {
   gbitmap_destroy(bmp);
 }
 
-void panels_draw_panel(GContext *ctx, GRect box, Panel panel) {
+void panels_draw_panel(GContext *ctx, GRect box, Panel panel, GPoint text_origin, const char *text) {
   GBitmap *bmp = gbitmap_create_with_resource(s_panel_resource_ids[panel]);
   graphics_draw_bitmap_in_rect(ctx, bmp, box);
   gbitmap_destroy(bmp);
+  if (text) {
+    graphics_draw_text(ctx, text, fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(text_origin.x, text_origin.y, box.size.w, box.size.h), GTextOverflowModeWordWrap, GTextAlignmentLeft, NULL);
+  }
 }

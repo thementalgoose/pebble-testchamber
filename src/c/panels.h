@@ -29,4 +29,4 @@ typedef enum {
 GBitmap *panels_load(Panel panel);
 void     panels_unload(GBitmap *bitmap);
 void     panels_draw_aperture(GContext *ctx, GRect box, int level);
-void     panels_draw_panel(GContext *ctx, GRect box, Panel panel);
+void     panels_draw_panel(GContext *ctx, GRect box, Panel panel, GPoint text_origin, const char *text);
