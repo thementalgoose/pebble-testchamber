@@ -1,4 +1,5 @@
 #include "panels.h"
+#include "constants.h"
 
 // ---------------------------------------------------------------------------
 // Panel bitmaps
@@ -59,6 +60,6 @@ void panels_draw_panel(GContext *ctx, GRect box, Panel panel, GPoint text_origin
   graphics_draw_bitmap_in_rect(ctx, bmp, box);
   gbitmap_destroy(bmp);
   if (text) {
-    graphics_draw_text(ctx, text, fonts_get_system_font(FONT_KEY_GOTHIC_14), GRect(text_origin.x, text_origin.y, box.size.w, box.size.h), GTextOverflowModeWordWrap, GTextAlignmentLeft, NULL);
+    graphics_draw_text(ctx, text, PANEL_TEXT, GRect(text_origin.x, text_origin.y, box.size.w, box.size.h), GTextOverflowModeWordWrap, GTextAlignmentLeft, NULL);
   }
 }
