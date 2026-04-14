@@ -48,18 +48,31 @@ void panels_unload(GBitmap *bitmap) {
   gbitmap_destroy(bitmap);
 }
 
-void panels_draw_aperture(GContext *ctx, GRect box, int level) {
-  if (level < 1 || level > 7) return;
-  GBitmap *bmp = gbitmap_create_with_resource(s_aperture_resource_ids[level]);
-  graphics_draw_bitmap_in_rect(ctx, bmp, box);
-  gbitmap_destroy(bmp);
-}
-
 void panels_draw_panel(GContext *ctx, GRect box, Panel panel, GPoint text_origin, const char *text) {
+  if (panel == PANEL_APERTURE) {
+    time_t now = time(NULL);
+    struct tm *t = localtime(&now);
+    int level = (t->tm_wday == 0) ? 7 : t->tm_wday;
+    GBitmap *bmp = gbitmap_create_with_resource(s_aperture_resource_ids[level]);
+    graphics_draw_bitmap_in_rect(ctx, bmp, box);
+    gbitmap_destroy(bmp);
+    return;
+  }
   GBitmap *bmp = gbitmap_create_with_resource(s_panel_resource_ids[panel]);
   graphics_draw_bitmap_in_rect(ctx, bmp, box);
   gbitmap_destroy(bmp);
   if (text) {
     graphics_draw_text(ctx, text, PANEL_TEXT, GRect(text_origin.x, text_origin.y, box.size.w, box.size.h), GTextOverflowModeWordWrap, GTextAlignmentLeft, NULL);
+  }
+  if (panel == PANEL_SLIDERUN) {
+    HealthMetric metric = HealthMetricStepCount;
+    HealthServiceAccessibilityMask mask = health_service_metric_accessible(metric, time_start_of_today(), time(NULL));
+    if (mask & HealthServiceAccessibilityMaskAvailable) {
+      HealthValue steps = health_service_sum(metric, time_start_of_today(), time(NULL));
+      static char s_steps_buf[8];
+      snprintf(s_steps_buf, sizeof(s_steps_buf), "%d", (int)steps);
+      graphics_context_set_text_color(ctx, GColorBlack);
+      graphics_draw_text(ctx, s_steps_buf, PANEL_TEXT, GRect(box.origin.x, box.origin.y, box.size.w, box.size.h), GTextOverflowModeTrailingEllipsis, GTextAlignmentCenter, NULL);
+    }
   }
 }

@@ -36,7 +36,7 @@
 #define BATTERY_BOTTOM          2
 #define BAR_LINE_W              1
 #define BAR_LINE_GAP            2
-#define PANEL_TEXT              fonts_get_system_font(FONT_KEY_GOTHIC_14_BOLD)
+#define PANEL_TEXT              fonts_get_system_font(FONT_KEY_GOTHIC_14)
 // Layout - Divider
 #define DIVIDER_BOTTOM          2 
 // Layout - Date
