@@ -24,8 +24,8 @@ This is inspired by https://apps.repebble.com/portal-sign_5832c17200355a86340001
 
 - [x] Adaptive to all supported pebble sizes
 - [x] Configure built in battery percentage
-- [ ] Configure each panel individually
-- [ ] Support sensor data embedded in the panels
+- [x] Configure each panel individually
+- [x] Support sensor data embedded in the panels
 - [ ] Support inverted colour scheme (?)
 - [x] Connection status
 
